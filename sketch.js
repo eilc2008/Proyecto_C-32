@@ -10,6 +10,10 @@ var ball;
 var divisionHeight=300;
 var score =0;
 
+var gameState = "play";
+
+var count;
+
 function setup() {
   createCanvas(800, 800);
   engine = Engine.create();
@@ -61,24 +65,62 @@ function draw() {
   for (var i = 0; i < plinkos.length; i++) {
      plinkos[i].display();  
   }
- 
+
+  for (var k = 0; k < divisions.length; k++) 
+  {
+    divisions[k].display();
+  }
+
     if(ball!=null)
     {
        ball.display();
-  
-  
+      
+       if(ball.body.position.y > 750){
+         if(ball.body.position.x < 325){ //&& ball.body.position.x > 0){
+           score = score +500;
+           ball = null;
+
+           if (count >= 5){
+            gameState = "end";
+           }
+         }
+
+         /*if(ball.body.position.x > 327&& ball.body.position.x < 600 ){
+           score = score +100;
+           ball = null;
+
+           if (count >= 5){
+            gameState = "end";
+           }
+         }
+
+         if(ball.body.position.x > 567 && ball.body.position.x < 800 ){
+           score = score +200;
+           ball = null;
+
+           if (count >= 5){
+            gameState = "end";
+           }
+         }*/
+
+         //console.log(ball.body);
+       }
     }
 
-   for (var k = 0; k < divisions.length; k++) 
-   {
-     divisions[k].display();
-   }
- 
+    if(gameState === "end"){
+      textSize(100);
+      fill("white");
+      text("Juego Terminado",100,100)
+    }
 }
 
 
 function mousePressed()
 {
-  ball=new Ball(mouseX, 10, 10, 10);  
+  if(gameState !== "end"){
+    count++
+
+    ball=new Ball(mouseX, 10, 10, 10);  
+  }
 }
 
