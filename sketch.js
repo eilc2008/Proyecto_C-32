@@ -12,7 +12,7 @@ var score =0;
 
 var gameState = "play";
 
-var count;
+var count = 0;
 
 function setup() {
   createCanvas(800, 800);
@@ -44,8 +44,8 @@ function setup() {
 function draw() {
   background("black");
   textSize(35)
+  fill("cyan");
   text("Puntuación : "+score,20,40);
-  fill("white");
 
   textSize(35)
   text(" 500 ", 5, 550);
@@ -83,25 +83,21 @@ function draw() {
            if (count >= 5){
             gameState = "end";
            }
-         }
-
-         /*if(ball.body.position.x > 327&& ball.body.position.x < 600 ){
+         }else if(ball.body.position.x > 327&& ball.body.position.x < 600 ){
            score = score +100;
            ball = null;
 
            if (count >= 5){
             gameState = "end";
            }
-         }
-
-         if(ball.body.position.x > 567 && ball.body.position.x < 800 ){
+         }else if(ball.body.position.x > 567 && ball.body.position.x < 800 ){
            score = score +200;
            ball = null;
 
            if (count >= 5){
             gameState = "end";
            }
-         }*/
+         }
 
          //console.log(ball.body);
        }
@@ -109,8 +105,8 @@ function draw() {
 
     if(gameState === "end"){
       textSize(100);
-      fill("white");
-      text("Juego Terminado",100,100)
+      fill("cyan");
+      text("Juego Terminado",25,200)
     }
 }
 
